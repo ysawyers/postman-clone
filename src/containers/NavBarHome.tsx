@@ -25,7 +25,7 @@ const signInStyling = {
   textTransform: 'none',
   color: '#4C4C4C',
   borderColor: '#D6D6D6',
-};
+} as const;
 
 const signUpStyling = {
   textTransform: 'none',
@@ -34,7 +34,7 @@ const signUpStyling = {
   '& .hover': {
     backgroundColor: '#Ef4E14',
   },
-};
+} as const;
 
 const NavBarHome = (): JSX.Element => {
   const history = useHistory();
@@ -51,7 +51,6 @@ const NavBarHome = (): JSX.Element => {
         <div className={styles.childContainer}>
           <Button
             variant='outlined'
-            /*@ts-ignore */
             sx={signInStyling}
             onClick={() => {
               changeRoute('login');
@@ -61,7 +60,6 @@ const NavBarHome = (): JSX.Element => {
           </Button>
 
           <Button
-            /*@ts-ignore */
             sx={signUpStyling}
             onClick={() => {
               changeRoute('register');

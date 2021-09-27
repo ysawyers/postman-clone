@@ -7,19 +7,21 @@ import './styles/App.css';
 
 function App(): JSX.Element {
   return (
-    <Router>
-      <Switch>
-        <Route path='/register'>
-          <Register />
-        </Route>
-        <Route exact path='/login'>
-          <Login />
-        </Route>
-        <Route exact path='/'>
-          <Homepage />
-        </Route>
-      </Switch>
-    </Router>
+    <div className='App'>
+      <Router>
+        <Switch>
+          <Route path='/register'>
+            <Register />
+          </Route>
+          <Route exact path='/login'>
+            <Login />
+          </Route>
+          <Route exact path='/'>
+            <Homepage />
+          </Route>
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
