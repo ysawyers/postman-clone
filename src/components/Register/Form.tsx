@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   parentContainer: {
@@ -56,6 +58,26 @@ const Form = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  let history = useHistory();
+
+  const submitForm = () => {
+    const data = {
+      email,
+      username,
+      password,
+    };
+    axios
+      .post('http://127.0.0.1:5000/auth/register', data)
+      .then((res) => {
+        if (res.data.token) {
+          localStorage.setItem('token', res.data.token);
+          history.push('/workspace');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const styles = useStyles();
   return (
@@ -79,19 +101,14 @@ const Form = () => {
         <br></br>
         <span style={{ fontSize: '13px', fontWeight: 'bold', fontFamily: 'Inter, monospace', marginBottom: '5px' }}>Password</span>
         <input
+          type='password'
           className={styles.inputField}
           onChange={(e) => {
             setPassword(e.target.value);
           }}
         ></input>
         <br></br>
-        <button
-          className={styles.signInButton}
-          type='button'
-          onClick={() => {
-            // send request to server
-          }}
-        >
+        <button className={styles.signInButton} type='button' onClick={submitForm}>
           Sign Up
         </button>
       </form>
